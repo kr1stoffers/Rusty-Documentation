@@ -1,0 +1,58 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Rusty Backend - Веб-сервер на Actix Web"><title>rusty_backend - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../static.files/rustdoc-46132b98.css"><meta name="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="rusty_backend" data-themes="" data-resource-suffix="" data-rustdoc-version="1.85.1 (4eb161250 2025-03-15)" data-channel="1.85.1" data-search-js="search-75f5ac3e.js" data-settings-js="settings-0f613d39.js" ><script src="../static.files/storage-59e33391.js"></script><script defer src="../crates.js"></script><script defer src="../static.files/main-5f194d8c.js"></script><noscript><link rel="stylesheet" href="../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../static.files/favicon-044be391.svg"></head><body class="rustdoc mod crate"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../rusty_backend/index.html">rusty_<wbr>backend</a><span class="version">0.1.0</span></h2></div><div class="sidebar-elems"><ul class="block"><li><a id="all-types" href="all.html">All Items</a></li></ul><section id="rustdoc-toc"><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#rusty-backend---Веб-сервер-на-actix-web" title="Rusty Backend - Веб-сервер на Actix Web">Rusty Backend - Веб-сервер на Actix Web</a><ul><li><a href="#Основные-возможности" title="Основные возможности">Основные возможности</a></li><li><a href="#Структура-api" title="Структура API">Структура API</a></li><li><a href="#Запуск" title="Запуск">Запуск</a></li><li><a href="#Конфигурация" title="Конфигурация">Конфигурация</a></li><li><a href="#Зависимости" title="Зависимости">Зависимости</a></li></ul></li></ul><h3><a href="#modules">Crate Items</a></h3><ul class="block"><li><a href="#modules" title="Modules">Modules</a></li><li><a href="#structs" title="Structs">Structs</a></li><li><a href="#functions" title="Functions">Functions</a></li></ul></section><div id="rustdoc-modnav"></div></div></nav><div class="sidebar-resizer"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1>Crate <span>rusty_backend</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../src/rusty_backend/main.rs.html#1-204">Source</a> </span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="rusty-backend---Веб-сервер-на-actix-web"><a class="doc-anchor" href="#rusty-backend---Веб-сервер-на-actix-web">§</a>Rusty Backend - Веб-сервер на Actix Web</h2>
+<p>Это приложение использует Actix Web для создания веб-сервера, который взаимодействует с базой данных PostgreSQL.
+Основные функции включают управление пользователями, серверами и каналами.</p>
+<h3 id="Основные-возможности"><a class="doc-anchor" href="#Основные-возможности">§</a>Основные возможности</h3>
+<ul>
+<li><strong>Управление пользователями</strong>: регистрация, авторизация, CRUD операции</li>
+<li><strong>Управление серверами</strong>: создание серверов, добавление участников</li>
+<li><strong>Текстовые каналы</strong>: создание каналов, отправка сообщений</li>
+<li><strong>Голосовые каналы</strong>: поддержка WebRTC для голосового общения</li>
+<li><strong>Структурированное логирование</strong>: использование tracing для мониторинга</li>
+</ul>
+<h3 id="Структура-api"><a class="doc-anchor" href="#Структура-api">§</a>Структура API</h3><h4 id="Пользователи"><a class="doc-anchor" href="#Пользователи">§</a>Пользователи</h4>
+<ul>
+<li><code>POST /user/register</code> - Регистрация нового пользователя</li>
+<li><code>POST /user/login</code> - Авторизация пользователя</li>
+<li><code>GET /user</code> - Получение списка всех пользователей</li>
+<li><code>GET /user/{id}</code> - Получение пользователя по ID</li>
+<li><code>PUT /user/{id}</code> - Обновление пользователя</li>
+<li><code>DELETE /user/{id}</code> - Удаление пользователя</li>
+</ul>
+<h4 id="Серверы"><a class="doc-anchor" href="#Серверы">§</a>Серверы</h4>
+<ul>
+<li><code>POST /server</code> - Создание нового сервера</li>
+<li><code>GET /server</code> - Получение списка всех серверов</li>
+<li><code>POST /server/{server_id}/member</code> - Добавление участника на сервер</li>
+<li><code>GET /server/{server_id}/member</code> - Получение участников сервера</li>
+</ul>
+<h4 id="Текстовые-каналы"><a class="doc-anchor" href="#Текстовые-каналы">§</a>Текстовые каналы</h4>
+<ul>
+<li><code>POST /server/{server_id}/text_channel</code> - Создание текстового канала</li>
+<li><code>GET /server/{server_id}/text_channel</code> - Получение каналов сервера</li>
+<li><code>DELETE /server/text_channel/{text_channel_id}</code> - Удаление канала</li>
+<li><code>POST /server/text_channel/{text_channel_id}/user/{author_id}/message</code> - Отправка сообщения</li>
+<li><code>GET /server/text_channel/{id}/user/message</code> - Получение сообщений канала</li>
+</ul>
+<h4 id="Голосовые-каналы"><a class="doc-anchor" href="#Голосовые-каналы">§</a>Голосовые каналы</h4>
+<ul>
+<li><code>POST /server/voice_channel/{voice_channel_id}/user/{user_id}/sdp</code> - Отправка SDP для WebRTC</li>
+<li><code>POST /server/voice_channel/{voice_channel_id}/user/</code> - Добавление участника в голосовой канал</li>
+</ul>
+<h3 id="Запуск"><a class="doc-anchor" href="#Запуск">§</a>Запуск</h3><div class="example-wrap"><pre class="language-bash"><code># Установка переменной окружения для логирования
+export RUST_LOG=info
+
+# Запуск сервера
+cargo run</code></pre></div><h3 id="Конфигурация"><a class="doc-anchor" href="#Конфигурация">§</a>Конфигурация</h3>
+<ul>
+<li><strong>Порт</strong>: 8080 (по умолчанию)</li>
+<li><strong>База данных</strong>: PostgreSQL</li>
+<li><strong>Логирование</strong>: tracing с поддержкой env-filter</li>
+</ul>
+<h3 id="Зависимости"><a class="doc-anchor" href="#Зависимости">§</a>Зависимости</h3>
+<ul>
+<li><a href="https://actix.rs/">Actix Web</a> - Веб-фреймворк</li>
+<li><a href="https://github.com/launchbadge/sqlx">SQLx</a> - Асинхронная работа с БД</li>
+<li><a href="https://tracing.rs/">Tracing</a> - Структурированное логирование</li>
+<li><a href="https://serde.rs/">Serde</a> - Сериализация/десериализация</li>
+</ul>
+</div></details><h2 id="modules" class="section-header">Modules<a href="#modules" class="anchor">§</a></h2><ul class="item-table"><li><div class="item-name"><a class="mod" href="db/index.html" title="mod rusty_backend::db">db</a></div><div class="desc docblock-short">Модуль работы с базой данных</div></li><li><div class="item-name"><a class="mod" href="handler/index.html" title="mod rusty_backend::handler">handler</a></div><div class="desc docblock-short">HTTP обработчики</div></li><li><div class="item-name"><a class="mod" href="migration/index.html" title="mod rusty_backend::migration">migration</a></div><div class="desc docblock-short">Миграции базы данных</div></li><li><div class="item-name"><a class="mod" href="model/index.html" title="mod rusty_backend::model">model</a></div><div class="desc docblock-short">Модели данных</div></li></ul><h2 id="structs" class="section-header">Structs<a href="#structs" class="anchor">§</a></h2><ul class="item-table"><li><div class="item-name"><a class="struct" href="struct.State.html" title="struct rusty_backend::State">State</a></div><div class="desc docblock-short">Состояние приложения, содержащее базу данных и список голосовых каналов.</div></li><li><div class="item-name"><a class="struct" href="struct.VoiceChannel.html" title="struct rusty_backend::VoiceChannel">Voice<wbr>Channel</a></div><div class="desc docblock-short">Представляет голосовой канал с его участниками.</div></li></ul><h2 id="functions" class="section-header">Functions<a href="#functions" class="anchor">§</a></h2><ul class="item-table"><li><div class="item-name"><a class="fn" href="fn.main.html" title="fn rusty_backend::main">main</a><span title="Restricted Visibility">&nbsp;🔒</span> </div><div class="desc docblock-short">Главная функция приложения, запускающая веб-сервер.</div></li></ul></section></div></main></body></html>

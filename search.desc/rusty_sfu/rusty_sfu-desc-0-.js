@@ -1,0 +1,1 @@
+searchState.loadedDescShard("rusty_sfu", 0, "Rusty SFU - Selective Forwarding Unit\nReturns the argument unchanged.\nReturns the argument unchanged.\nCalls <code>U::from(self)</code>.\nCalls <code>U::from(self)</code>.\nГлавная функция SFU сервера.")

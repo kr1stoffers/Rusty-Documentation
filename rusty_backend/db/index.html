@@ -1,0 +1,29 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Модуль работы с базой данных"><title>rusty_backend::db - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-46132b98.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="rusty_backend" data-themes="" data-resource-suffix="" data-rustdoc-version="1.85.1 (4eb161250 2025-03-15)" data-channel="1.85.1" data-search-js="search-75f5ac3e.js" data-settings-js="settings-0f613d39.js" ><script src="../../static.files/storage-59e33391.js"></script><script defer src="../sidebar-items.js"></script><script defer src="../../static.files/main-5f194d8c.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc mod"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../rusty_backend/index.html">rusty_<wbr>backend</a><span class="version">0.1.0</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">Module db</a></h2><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#Модуль-работы-с-базой-данных" title="Модуль работы с базой данных">Модуль работы с базой данных</a><ul><li><a href="#Основные-возможности" title="Основные возможности">Основные возможности</a></li><li><a href="#Примеры-использования" title="Примеры использования">Примеры использования</a></li><li><a href="#Логирование" title="Логирование">Логирование</a></li></ul></li></ul><h3><a href="#structs">Module Items</a></h3><ul class="block"><li><a href="#structs" title="Structs">Structs</a></li></ul></section><div id="rustdoc-modnav"><h2 class="in-crate"><a href="../index.html">In crate rusty_<wbr>backend</a></h2></div></div></nav><div class="sidebar-resizer"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><span class="rustdoc-breadcrumbs"><a href="../index.html">rusty_backend</a></span><h1>Module <span>db</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../../src/rusty_backend/db.rs.html#1-760">Source</a> </span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="Модуль-работы-с-базой-данных"><a class="doc-anchor" href="#Модуль-работы-с-базой-данных">§</a>Модуль работы с базой данных</h2>
+<p>Этот модуль предоставляет абстракцию для работы с базой данных PostgreSQL.
+Использует SQLx для асинхронных запросов и включает структурированное логирование.</p>
+<h3 id="Основные-возможности"><a class="doc-anchor" href="#Основные-возможности">§</a>Основные возможности</h3>
+<ul>
+<li><strong>Управление пользователями</strong>: создание, чтение, обновление, удаление</li>
+<li><strong>Управление серверами</strong>: создание серверов, управление участниками</li>
+<li><strong>Текстовые каналы</strong>: создание каналов, управление сообщениями</li>
+<li><strong>Безопасность</strong>: хеширование паролей с bcrypt</li>
+</ul>
+<h3 id="Примеры-использования"><a class="doc-anchor" href="#Примеры-использования">§</a>Примеры использования</h3>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>rusty_backend::db::Db;
+
+<span class="comment">// Создание подключения
+</span><span class="kw">let </span>db = Db::new(<span class="string">"postgres://user:pass@localhost/db"</span>).<span class="kw">await</span><span class="question-mark">?</span>;
+
+<span class="comment">// Создание пользователя
+</span>db.create_user(<span class="string">"John"</span>, <span class="string">"john@example.com"</span>, <span class="prelude-val">None</span>, <span class="string">"hashed_password"</span>).<span class="kw">await</span><span class="question-mark">?</span>;
+
+<span class="comment">// Получение пользователя
+</span><span class="kw">let </span>user = db.get_user_by_id(<span class="number">1</span>).<span class="kw">await</span><span class="question-mark">?</span>;</code></pre></div>
+<h3 id="Логирование"><a class="doc-anchor" href="#Логирование">§</a>Логирование</h3>
+<p>Все операции с базой данных логируются с помощью tracing:</p>
+<ul>
+<li>Входные параметры (кроме паролей)</li>
+<li>Результаты операций</li>
+<li>Ошибки с детальной информацией</li>
+</ul>
+</div></details><h2 id="structs" class="section-header">Structs<a href="#structs" class="anchor">§</a></h2><ul class="item-table"><li><div class="item-name"><a class="struct" href="struct.Db.html" title="struct rusty_backend::db::Db">Db</a></div><div class="desc docblock-short">Представляет подключение к базе данных PostgreSQL.</div></li></ul></section></div></main></body></html>
